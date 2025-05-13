@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { use } from 'react'
+
 
 function App() {
   const[user, setUser]=useState({
@@ -10,16 +10,17 @@ function App() {
     password:"",
     confirmPassword:""
 })
+const [data, setData]=useState("")
 
 const handleSubmit=(event)=>{
     event.preventDefault();
     console.log(user)
-    setUser("")
+    setData(user)  
 }
 const handlechange=(event)=>{
   const{name,value}=event.target
-  setUser((pre)=>({...pre,[name]:value}));
-}
+  setUser((pre)=>({...pre,[name]:value})); 
+ }
   return (
     <>
       <h1 id='header'>Registration Form</h1>
@@ -30,6 +31,7 @@ const handlechange=(event)=>{
           <input
             type='text'
             name='first'
+            required
             className='inputName'
             onChange={handlechange}
           />
@@ -39,6 +41,7 @@ const handlechange=(event)=>{
           <input
             type='text'
             name='email' 
+            required
             className='inputEmail'
             onChange={handlechange}
           />
@@ -48,6 +51,7 @@ const handlechange=(event)=>{
           <input
             type='num'
             name='phone'
+            required
             className='inputPhone'
            onChange={handlechange}
           />
@@ -57,6 +61,7 @@ const handlechange=(event)=>{
           <input
             type='text'
             name='password'
+            required
             className='inputPassword'
             onChange={handlechange}
           />
@@ -66,6 +71,7 @@ const handlechange=(event)=>{
           <input
             type='text'
             name='confirmPassword'
+            required
             className='inputCpassword'
             onChange={handlechange}
           />
@@ -75,7 +81,9 @@ const handlechange=(event)=>{
         </button> 
         </div>
       </form>
-      
+       <p className='result'>
+        name {data.first} email is {data.email} phone number is {data.phone}.
+       </p>
     </>
   )
 }
